@@ -1,4 +1,3 @@
-#!/usr/bin/bash
 export $(grep -v '^#' .env | xargs)
 
 set -e
@@ -6,12 +5,6 @@ set -e
 PSQL="psql --username=$PGUSER --dbname=$PGDATABASE"
 
 export PGPASSWORD=$PGPASSWORD
-$PSQL -c "DROP SCHEMA public CASCADE;"
-echo "Creating tables from schema..."
-$PSQL -f SQL/sql_schema.sql
-
-echo "LOad data ..."
-$PSQL -f load_data.sql
 
 echo "running sql queries"
 $PSQL -f sql_queries.sql

@@ -95,6 +95,13 @@ Built an interactive dashboard including:
 * Translating raw data into actionable business insights
 
 ---
+## MESSY DATA UNCOVERED SO FAR 
+
+Data Quality Issues Encountered
+duplicate product IDs with inconsistent product names
+inconsistent encoding
+duplicate customer locations
+
 
 ##  Contact
 

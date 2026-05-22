@@ -1,6 +1,7 @@
-TRUNCATE TABLE customers;
-TRUNCATE TABLE orders;
-TRUNCATE TABLE product;
+TRUNCATE TABLE customers CASCADE;
+TRUNCATE TABLE orders CASCADE;
+TRUNCATE TABLE product CASCADE;
+TRUNCATE TABLE order_items CASCADE;
 CREATE TEMP TABLE t (
     Row_ID INT,
     Order_ID TEXT,
@@ -22,16 +23,25 @@ CREATE TEMP TABLE t (
     Sales NUMERIC
 );
 
-\copy t FROM 'train.csv' WITH (FORMAT csv, HEADER true, ENCODING 'utf-8');
+\copy t FROM 'train_utf8.csv' WITH (FORMAT csv, HEADER true, ENCODING 'utf-8');
 
 INSERT INTO customers (customer_id, Name, segment)
 SELECT DISTINCT Customer_ID, Customer_Name, Segment
 FROM t;
 
 INSERT INTO orders (order_id, order_date, ship_date,ship_mode,country, city, state, postal_code, region,Customer_ID)
-SELECT Order_ID, Order_Date, Ship_Date,Ship_Mode, Country,City,State,Postal_Code,Region,Customer_ID
+SELECT DISTINCT Order_ID, Order_Date, Ship_Date,Ship_Mode, Country,City,State,Postal_Code,Region,Customer_ID
 FROM t;
 
-INSERT INTO product (product_id,category,sub_category,product_name,sales)
-SELECT Product_ID, Category, Sub_Category, Product_Name, Sales
+INSERT INTO product (product_id,category,sub_category,product_name)
+SELECT
+    product_id,
+    MAX(category) AS category,
+    MAX(sub_category) AS sub_category,
+    MAX(product_name) AS product_name
+FROM t
+GROUP BY product_id;
+
+INSERT INTO order_items (order_id, product_id,sales)
+SELECT Order_ID, Product_ID, Sales
 FROM t;
