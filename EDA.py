@@ -181,3 +181,28 @@ mae_results = pd.DataFrame({
 
 print(mae_results)
 mae_results.to_csv("mae_results.csv",index=False)
+
+
+actual_vs_predicted = pd.DataFrame({
+    'Date': test['ds'],
+    'Actual': actual,
+    'ARIMA': arima_prediction,
+    'SARIMA': sarima_prediction,
+    'Prophet': prediction 
+    
+})
+
+actual_vs_predicted.to_csv('forecast results.csv', index = False)
+
+
+forecast_df =  pd.DataFrame(index=monthly_sales.index)
+forecast_df['Actual'] = monthly_sales
+forecast_df['Prophet'] = None
+forecast_df['ARIMA'] = None
+forecast_df['SARIMA'] = None
+
+forecast_df.loc[monthly_sales[-3:].index, 'Prophet'] = prediction
+forecast_df.loc[monthly_sales[-3:].index, 'ARIMA'] = arima_prediction
+forecast_df.loc[monthly_sales[-3:].index, 'SARIMA'] = sarima_prediction
+
+forecast_df.to_csv('forecast_results_full.csv')
