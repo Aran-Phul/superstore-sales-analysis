@@ -127,9 +127,8 @@ Built an interactive dashboard including:
 
 * `train.py` – data loading and cleaning
 * `EDA.py` – time series forecasting with predictive model analysis
-* `data/` – dataset files
 * `sql/` – SQL queries
-* `dashboard/` – Power BI file (.pbix)
+* `Dashboard/` – Power BI file (.pbix)
 
 ---
 
@@ -139,6 +138,7 @@ Built an interactive dashboard including:
 * Writing SQL queries for business analysis
 * Designing dashboards to communicate insights effectively
 * Translating raw data into actionable business insights
+* My first experience using predicitve modelling in analysis
 
 ---
 ## MESSY DATA UNCOVERED SO FAR 
