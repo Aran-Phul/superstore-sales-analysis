@@ -15,3 +15,4 @@ print(df.info())
 print(df.isnull().sum())
 
 df.to_csv('train_utf8.csv', index=False, encoding='utf-8')
+

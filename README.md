@@ -2,7 +2,15 @@
 
 ##  Overview
 
-This project is an end-to-end data analysis of a retail dataset, designed to simulate real-world business reporting. The goal was to analyse sales performance, customer behaviour, and profitability, and present insights through an interactive dashboard.
+This project analyzes four years of retail sales data from a global superstore.
+
+My objectives were to:
+
+- Identify key sales trends
+- Analyze customer and product performance
+- Evaluate shipping behaviour
+- Forecast future revenue using time-series models
+- Build an interactive Power BI dashboard
 
 ---
 
@@ -18,9 +26,26 @@ This project is an end-to-end data analysis of a retail dataset, designed to sim
 
 ## Tools Used
 
-* Python (Pandas) – data cleaning and preprocessing
-* SQL (PostgreSQL) – data storage and querying
-* Power BI – data visualisation and dashboard creation
+- PostgreSQL
+- scikit-learn
+- Python
+- statsforecast
+- Pandas
+- Prophet
+- ARIMA
+- SARIMA
+- Power BI
+
+---
+
+## Database Design
+
+The raw dataset was normalized into:
+
+- Customers
+- Orders
+- Products
+- Order Items
 
 ---
 
@@ -32,7 +57,7 @@ This project is an end-to-end data analysis of a retail dataset, designed to sim
 
 ### 2. Data Cleaning (Python)
 
-* Handled missing values
+* Converted data into correct formatting for 
 * Standardised date formats
 * Converted data types (sales, profit, dates)
 * Created new features:
@@ -65,22 +90,43 @@ Built an interactive dashboard including:
 
 ##  Key Insights
 
-* Technology category generated the highest revenue but had lower profit margins
+* Technology category generated the highest revenue seemingly due to seasonal purchasing habits (black friday)
 * Sales peak during November–December, indicating strong seasonal demand
-* Certain regions consistently outperform others in both revenue and profitability
-* High revenue does not always correlate with high profit
+- Standard Class represented nearly 60% of all shipments
+- Top 10 products contributed disproportionately to revenue
+- Q4 consistently produced the highest sales
+
+---
+## Forecasting Results
+
+| Model | MAE |
+|---------|---------:|
+| Prophet | 20540 |
+| ARIMA | 28540 |
+| SARIMA | 20600 |
 
 ---
 
 ## Dashboard Preview
 
-*(Add screenshots here once your dashboard is complete)*
+### Executive Overview
+
+![Page1](<Dashboard/Page 1 Overview.png>)
+
+### Customer Analysis
+
+![Page2](<Dashboard/Page 2 Product & Customer Analysis.png>)
+
+### Forecasting
+
+![Page3](<Dashboard/Page 3 Forecasting.png>)
 
 ---
 
 ##  Project Structure
 
 * `train.py` – data loading and cleaning
+* `EDA.py` – time series forecasting with predictive model analysis
 * `data/` – dataset files
 * `sql/` – SQL queries
 * `dashboard/` – Power BI file (.pbix)

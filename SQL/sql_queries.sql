@@ -93,3 +93,16 @@ orders.ship_mode
 FROM orders
 GROUP BY orders.ship_mode
 ORDER BY ship_delay_days ASC;
+
+
+-- Customer Rankings--
+
+SELECT customers.customer_id,
+customers.Name,
+SUM(order_items.sales) as revenue,
+RANK () OVER (ORDER BY SUM(order_items.sales) DESC) AS revenue_rank
+FROM order_items
+JOIN orders ON orders.order_id = order_items.order_id
+JOIN customers ON customers.customer_id = orders.Customer_ID
+GROUP BY customers.customer_id
+ORDER BY revenue DESC;
